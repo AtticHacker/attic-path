@@ -89,25 +89,20 @@ end
                                                      AtticPath Input Functions                              
 ########################################################################################
 
-### attic_path = AtticPathInput.new(attic_c)
-##
-# New input, you don't HAVE to repeat this if your app is straight forward
+# attic_path = AtticPathInput.new(attic_c)
+New input, you don't HAVE to repeat this if your app is straight forward
 
-### attic_path.input
-##
-# This is the input, like gets.chomp
+# attic_path.input
+This is the input, like gets.chomp
 
-### attic_path.output
-##
-# This is the output for your input, it'll just output a string
+# attic_path.output
+This is the output for your input, it'll just output a string
 
-### attic_path.array
-##
-# This is the output but as an array
+# attic_path.array
+This is the output but as an array
 
-### puts attic_path.grab
-##
-# This is the grab function. An array with all the files / folders that the user stored
+# puts attic_path.grab
+This is the grab function. An array with all the files / folders that the user stored
 
 Notes
 =====
