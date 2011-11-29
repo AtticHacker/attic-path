@@ -47,7 +47,7 @@ Just require the gem and add this to your code to adjust the options.
 ########################################################################################
                                                          AtticPath Options                                    
 ########################################################################################
-
+```ruby
 attic_c = AtticPathCommands.new do |c|
 
   c.submit = true # Set to true if user has to use the submit_command before submitting
@@ -83,7 +83,7 @@ attic_c = AtticPathCommands.new do |c|
     c.grab_not_found = "File you typed in wasn't found" # Set error message for when grab isn't found
   end
 end
-
+```
 
 ########################################################################################
                                                      AtticPath Input Functions                              
