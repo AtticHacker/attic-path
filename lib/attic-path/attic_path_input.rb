@@ -88,7 +88,7 @@ class AtticPathInput
     flush()
     
     # Converts the input to an array, in order to set multiple functions in 1 input
-    @input = gets.chomp
+    @input = $stdin.gets.chomp
     @input_array = @input.scan(/\w+/)
     @input = @input.split(" ")
     
