@@ -11,7 +11,15 @@ With Attic Path you can browse your system while being in the gets.chomp.
 The user can select files and add them into an array.
 Here are the current available options for Attic Path.
 
+Notes
+=====
 
+Please note that this gem is still beta version, I am not responsible if something breaks when using this. Use at own risk.
+
+Bugs
+====
+
+- There seems to be a problem with the grab.count option. Using Thor and setting grab.count to true could cause an error, set to 99999999 instead.
 
 Options
 ======
@@ -34,7 +42,7 @@ List of options:
 - lsa: Set to true in order to enable the "ls -a" command, shows all files including hidden files in a folder.
 - mv: Set to true if you want the user to be able to use mv command while inside the input
 - grab: Set to true if you want the user to be able to use the grab command while inside the input. The grab command lets the user 'grab' a certain file. When he does this the file will be put into an array, and you can get that array out of the output.
-- grab_count: Set max allowed files that can be inserted into array, set true if unlimited 
+- grab_count: Set max allowed files that can be inserted into array, set true if unlimited. If setting to true gives an error, set to 99999999999 instead.
 - grab_exit: Set to true if you want to exit input once the array has enough item
 - grab_no_file: Set error message if no file is selected
 - grab_full: Set error message for when grab is full
@@ -114,8 +122,3 @@ This is the output but as an array
 
 # puts attic_path.grab
 This is the grab function. An array with all the files / folders that the user stored
-
-Notes
-=====
-
-Please note that this gem is still beta version, I am not responsible if something breaks when using this. Use at own risk.

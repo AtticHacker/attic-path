@@ -81,11 +81,13 @@ class AtticPathInput
     # If pathing is true, display the current_dir.
     
     if attic_c.pathing_comment != nil
-      puts attic_c.pathing_comment
+      puts "\n"+attic_c.pathing_comment
+    else
+      puts "\n"
     end
     
     if attic_c.pathing == true
-      puts "\n>>#{@the_dir}"
+      puts ">>#{@the_dir}"
       all_files()
     end
     
