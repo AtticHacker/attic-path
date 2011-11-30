@@ -79,6 +79,11 @@ class AtticPathInput
   # this function will be called.
   def command
     # If pathing is true, display the current_dir.
+    
+    if attic_c.pathing_comment != nil
+      puts attic_c.pathing_comment
+    end
+    
     if attic_c.pathing == true
       puts "\n>>#{@the_dir}"
       all_files()
@@ -138,7 +143,7 @@ class AtticPathInput
   def cd
     if attic_c.cd == true
       if @input[1] == "--help"
-        puts "cd help"
+        puts attic_c.cd_help
         command()
       else
         if @input[1] == nil || @input[1][0] == "/"
@@ -175,7 +180,7 @@ class AtticPathInput
   def ls
     if attic_c.ls == true
       if @input[1] == "--help"
-        puts "ls help"
+        puts attic_c.ls_help
         command()
       else
         Dir.chdir(@the_dir)
@@ -216,19 +221,40 @@ class AtticPathInput
   
   # The mv method
   def mv
-    if @input[1] != nil && @input[2] != nil
-      file_1 = File.join(@the_dir, @input[1])
-      file_2 = File.join(@the_dir, @input[2])
-      if @input[1][0] == "#"
-        number1 = @input[1][1..999].to_i
-        number2 = @input[2][1..999].to_i
+    if attic_c.mv == true
+      if @input[1] == "--help"
+        puts attic_c.mv_help
+        command()
+      else
+        if @input[1] != nil && @input[2] != nil
+          file_1 = File.join(@the_dir, @input[1])
+          file_2 = File.join(@the_dir, @input[2])
+          if @input[1][0] == "#"
+            number1 = @input[1][1..999].to_i
+            number2 = @input[2][1..999].to_i
         
-        file_id_1 = File.join(@the_dir, @all_files[number1])
-        file_id_2 = File.join(@the_dir, @all_files[number2])
-        if @input[2][0] == "#"
-          if File.exists? file_id_1
-            if File.exists? file_id_2
-              FileUtils.mv(file_id_1, file_id_2)
+            file_id_1 = File.join(@the_dir, @all_files[number1])
+            file_id_2 = File.join(@the_dir, @all_files[number2])
+            if @input[2][0] == "#"
+              if File.exists? file_id_1
+                if File.exists? file_id_2
+                  FileUtils.mv(file_id_1, file_id_2)
+                else
+                  puts "Incorrect paths"
+                  command()
+                end
+              else
+                puts "Incorrect paths"
+                command()
+              end
+            else
+        
+            end
+          end
+          if File.exists? file_1
+            if File.exists? file_2
+              FileUtils.mv(file_1, file_2)
+              command()
             else
               puts "Incorrect paths"
               command()
@@ -238,24 +264,10 @@ class AtticPathInput
             command()
           end
         else
-        
-        end
-      end
-      if File.exists? file_1
-        if File.exists? file_2
-          FileUtils.mv(file_1, file_2)
-          command()
-        else
-          puts "Incorrect paths"
+          puts "No target selected"
           command()
         end
-      else
-        puts "Incorrect paths"
-        command()
       end
-    else
-      puts "No target selected"
-      command()
     end
   end
   
@@ -364,38 +376,45 @@ class AtticPathInput
   # The grab method, to grab select files.
   # A user can select multiple files at once.
   def grabfile
-    if attic_c.grab == true && @input[1] != nil
-      @grab_file = File.join(@the_dir, @input[1])
+    if attic_c.grab == true
       if @input[1] == "--help"
-        puts "grab help"
+        puts attic_c.grab_help
+        command()
       else
-        if attic_c.file_id == true && @input[1][0] == "#"
-          grab_id()
-        else
-          if attic_c.grab_count == true
-            grabfile_name()
-          elsif @grab_num != attic_c.grab_count
-            grabfile_name()
-            if @grab_num == attic_c.grab_count && attic_c.grab_exit == true
-              flush()
-            else
-              command()
-            end
+        if attic_c.grab == true && @input[1] != nil
+          @grab_file = File.join(@the_dir, @input[1])
+          if @input[1] == "--help"
+            puts "grab help"
           else
-            if @grab_num == attic_c.grab_count && attic_c.grab_exit == true
-              flush()
+            if attic_c.file_id == true && @input[1][0] == "#"
+              grab_id()
             else
-              puts attic_c.grab_full
-              command()
+              if attic_c.grab_count == true
+                grabfile_name()
+              elsif @grab_num != attic_c.grab_count
+                grabfile_name()
+                if @grab_num == attic_c.grab_count && attic_c.grab_exit == true
+                  flush()
+                else
+                  command()
+                end
+              else
+                if @grab_num == attic_c.grab_count && attic_c.grab_exit == true
+                  flush()
+                else
+                  puts attic_c.grab_full
+                  command()
+                end
+              end
             end
           end
+        elsif @input[1] == nil
+          puts attic_c.grab_no_file
+          command()
+        else
+          invalid()
         end
       end
-    elsif @input[1] == nil
-      puts attic_c.grab_no_file
-      command()
-    else
-      invalid()
     end
   end
   
