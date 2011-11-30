@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name = 'attic-path'
-  spec.version ='0.0.1'
+  spec.version ='0.0.2'
   spec.platform    = Gem::Platform::RUBY
 
   spec.files = ["README.md", "lib/attic-path.rb", "lib/attic-path/attic_path_commands.rb", "lib/attic-path/attic_path_input.rb"]
