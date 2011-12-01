@@ -2,11 +2,8 @@
 require "fileutils"
 require "terminal-table"
 
-# require File.expand_path("../../lib/attic_path_input.rb", __FILE__)
-# require File.expand_path("../../lib/attic_path_commands.rb", __FILE__)
-
 $:.unshift File.dirname(__FILE__)
-%w(attic_path_commands attic_path_input).each do |file|
+%w(commands input).each do |file|
   require "attic-path/#{file}"
 end
 

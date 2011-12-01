@@ -15,6 +15,7 @@ Notes
 =====
 
 Please note that this gem is still beta version, I am not responsible if something breaks when using this. Use at own risk.
+This gem might not work on Windows.
 
 Bugs
 ====
@@ -60,7 +61,7 @@ Just require the gem and add this to your code to adjust the options.
 
 ## AtticPath Options  
 ```ruby
-attic_c = AtticPathCommands.new do |c|
+ATTIC_C = AtticPath::Commands.new do |c|
 
   c.submit = true # Set to true if user has to use the submit_command before submitting
 
@@ -108,7 +109,7 @@ end
 AtticPath Input Functions                              
 -------------------------
 
-# attic_path = AtticPathInput.new(attic_c)
+# attic_path = AtticPath::Input.new(ATTIC_C)
 New input, you don't HAVE to repeat this if your app is straight forward
 
 # attic_path.input
