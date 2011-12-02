@@ -365,7 +365,7 @@ module AtticPath
         if @grab_array.count != attic_c.grab_count
           check_file(@grab_file)
           @grab_array << @grab_file
-          puts "Adding #{@grab_file} to array"
+          puts "Adding #{@grab_file} to array.."
           if attic_c.grab_count != true
             @grab_num += 1
           end
@@ -388,6 +388,24 @@ module AtticPath
             @grab_file = File.join(@the_dir, @input[1])
             if @input[1] == "--help"
               puts "grab help"
+            elsif @input[1] == "all"
+              if @all_files.count + @grab_num > attic_c.grab_count
+                puts attic_c.grab_full
+                command()
+              else
+                zecount = @all_files.count + @grab_num
+                puts zecount.to_s
+                @all_files.each do |a|
+                  @grab_array << File.join(@the_dir, a)
+                  puts "Adding " + File.join(@the_dir, a) + " to array.."
+                  @grab_num += 1
+                end
+                if attic_c.grab_exit == true
+                  flush()
+                else
+                  command()
+                end
+              end
             else
               if attic_c.file_id == true && @input[1][0] == "#"
                 grab_id()
